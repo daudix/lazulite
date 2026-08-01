@@ -35,7 +35,7 @@ To rebase an existing atomic Fedora installation to the latest build of select v
 
 - First rebase to the unsigned image, to get the proper signing keys and policies installed:
   ```
-  rpm-ostree rebase ostree-unverified-registry:ghcr.io/daudix/enceladus:<VARIANT>
+  rpm-ostree rebase ostree-unverified-registry:ghcr.io/daudix/lazulite:<VARIANT>
   ```
 - Reboot to complete the rebase:
   ```
@@ -43,7 +43,7 @@ To rebase an existing atomic Fedora installation to the latest build of select v
   ```
 - Then rebase to the signed image, like so:
   ```
-  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/daudix/enceladus:<VARIANT>
+  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/daudix/lazulite:<VARIANT>
   ```
 - Reboot again to complete the installation
   ```
@@ -55,5 +55,5 @@ To rebase an existing atomic Fedora installation to the latest build of select v
 These images are signed with [Sigstore](https://www.sigstore.dev/)'s [cosign](https://github.com/sigstore/cosign). You can verify the signature by downloading the `cosign.pub` file from this repo and running the following command:
 
 ```bash
-cosign verify --key cosign.pub ghcr.io/daudix/enceladus
+cosign verify --key cosign.pub ghcr.io/daudix/lazulite
 ```

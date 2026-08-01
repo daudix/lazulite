@@ -1,19 +1,40 @@
-# BlueBuild Template &nbsp; [![bluebuild build badge](https://github.com/blue-build/template/actions/workflows/build.yml/badge.svg)](https://github.com/blue-build/template/actions/workflows/build.yml)
+# Lazulite
 
-See the [BlueBuild docs](https://blue-build.org/how-to/setup/) for quick setup instructions for setting up your own repository based on this template.
+[![enceladus build badge](https://github.com/daudix/enceladus/actions/workflows/build.yml/badge.svg)](https://github.com/daudix/enceladus/actions/workflows/build.yml)
 
-After setup, it is recommended you update this README to describe your custom image.
+My personal flavors of [Fedora Silverblue](https://fedoraproject.org/atomic-desktops/silverblue/) and [uCore](https://github.com/ublue-os/ucore). They includes a small amount of changes that I always do on my own systems:
+
+- Both
+  - Install [fish shell](https://fishshell.com)
+- Fedora Silverblue
+  - Add all necessary media codecs and thumbnailers
+  - Install [Extension Manager](https://flathub.org/apps/com.mattjakeman.ExtensionManager)
+  - Install all core GNOME apps
+  - Remove default Fedora wallpapers
+  - Remove Firefox RPM
+  - Remove GNOME Classic session
+  - Replace Fedora Flatpaks with the ones from Flathub
+  - Replace Sushi Flatpak with system package, so that it can make use of additional codecs
+- uCore
+  - Install [TuneD](https://tuned-project.org)
+
+As these images are for personal use, I can't guarantee that their scope won't change, in fact it *will* quite often, as I change my own scope just as often.
 
 ## Installation
 
 > [!WARNING]  
 > [This is an experimental feature](https://www.fedoraproject.org/wiki/Changes/OstreeNativeContainerStable), try at your own discretion.
 
-To rebase an existing atomic Fedora installation to the latest build:
+Lazulite has two variants:
+
+ - `latte` - Silverblue-based image (alternatively `desktop`)
+ - `espresso` - uCore-based image (alternatively `server`)
+
+To rebase an existing atomic Fedora installation to the latest build of select variant:
 
 - First rebase to the unsigned image, to get the proper signing keys and policies installed:
   ```
-  rpm-ostree rebase ostree-unverified-registry:ghcr.io/blue-build/template:latest
+  rpm-ostree rebase ostree-unverified-registry:ghcr.io/daudix/enceladus:<VARIANT>
   ```
 - Reboot to complete the rebase:
   ```
@@ -21,23 +42,17 @@ To rebase an existing atomic Fedora installation to the latest build:
   ```
 - Then rebase to the signed image, like so:
   ```
-  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/blue-build/template:latest
+  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/daudix/enceladus:<VARIANT>
   ```
 - Reboot again to complete the installation
   ```
   systemctl reboot
   ```
 
-The `latest` tag will automatically point to the latest build. That build will still always use the Fedora version specified in `recipe.yml`, so you won't get accidentally updated to the next major version.
-
-## ISO
-
-If build on Fedora Atomic, you can generate an offline ISO with the instructions available [here](https://blue-build.org/how-to/generate-iso/#_top). These ISOs cannot unfortunately be distributed on GitHub for free due to large sizes, so for public projects something else has to be used for hosting.
-
 ## Verification
 
 These images are signed with [Sigstore](https://www.sigstore.dev/)'s [cosign](https://github.com/sigstore/cosign). You can verify the signature by downloading the `cosign.pub` file from this repo and running the following command:
 
 ```bash
-cosign verify --key cosign.pub ghcr.io/blue-build/template
+cosign verify --key cosign.pub ghcr.io/daudix/enceladus
 ```

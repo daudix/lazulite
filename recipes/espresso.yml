@@ -1,0 +1,33 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+name: enceladus
+description: My personal modification of uCore.
+
+alt-tags:
+  - espresso
+  - server
+base-image: quay.io/fedora/fedora-coreos
+image-version: stable
+
+modules:
+  - type: dnf
+    repos:
+      cleanup: true
+      files:
+        - https://raw.githubusercontent.com/rpmfusion/rpmfusion-nonfree-release/refs/heads/f44/rpmfusion-nonfree-tainted.repo
+      keys:
+        - https://raw.githubusercontent.com/rpmfusion/rpmfusion-nonfree-release/refs/heads/f44/RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020
+      nonfree: rpmfusion
+    group-install:
+      with-optional: true
+      packages:
+        - printing
+    install:
+      packages:
+        - beep
+        - intel-compute-runtime
+        - libva-utils
+        - lm_sensors
+        - nouveau-firmware
+  - type: signing
+  - from-file: server-common.yml

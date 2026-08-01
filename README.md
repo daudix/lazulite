@@ -1,8 +1,9 @@
 # Lazulite
 
-[![enceladus build badge](https://github.com/daudix/enceladus/actions/workflows/build.yml/badge.svg)](https://github.com/daudix/enceladus/actions/workflows/build.yml)
+> [!NOTE]
+> The difference between this and [Enceladus](https://github.com/daudix/enceladus) is that this one is intended to be built all locally with blue-build CLI, rather than pre-built with GitHub Actions. If all goes well, this will replace Enceladus.
 
-My personal flavors of [Fedora Silverblue](https://fedoraproject.org/atomic-desktops/silverblue/) and [uCore](https://github.com/ublue-os/ucore). They includes a small amount of changes that I always do on my own systems:
+My personal flavors of [Fedora Silverblue](https://fedoraproject.org/atomic-desktops/silverblue/) and [Fedora CoreOS](https://fedoraproject.org/coreos/). They includes a small amount of changes that I always do on my own systems:
 
 - Both
   - Install [fish shell](https://fishshell.com)

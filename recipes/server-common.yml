@@ -1,0 +1,42 @@
+modules:
+  - type: dnf
+    install:
+      packages:
+        # ======================================================================
+        # uCore packages from minimal edition, without all the bloat
+        # ======================================================================
+        - cockpit-files
+        - cockpit-networkmanager
+        - cockpit-podman
+        - cockpit-selinux
+        - cockpit-system
+        - firewalld
+        - fwupd-efi
+        - qemu-guest-agent
+        - wireguard-tools
+        # - open-vm-tools
+        # - podman
+        # - pv
+        # - tmux
+        # ======================================================================
+        # uCore packages from normal edition, without all the bloat
+        # ======================================================================
+        - cockpit-storaged
+        - duperemove
+        - fish
+        - man-db
+        - pcp-zeroconf
+        - rclone
+        - smartctl
+        - xdg-dbus-proxy
+        - xdg-user-dirs
+        # ======================================================================
+        # Extra
+        # ======================================================================
+        - borgmatic
+  - type: dnf
+    install:
+      install-weak-deps: false
+      packages:
+        - tuned
+        - tuned-profiles-atomic
